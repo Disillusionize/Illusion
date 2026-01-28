@@ -1,23 +1,22 @@
 {
   "compatibilityLevel": "JAVA_8",
-  "minVersion": "0.7",
-  "package": "org.example.illusion.mixins",
-  "refmap": "mixins.${mod_id}.refmap.json",
+  "minVersion": "0.8",
+  "package": "org.example.illusion.mixin",
   "mixins": [
-    "events.EntityLivingBase_JumpDelay",
-    "forge.MixinModList"
+    "EntityLivingBase_JumpDelay"
   ],
   "client": [
-    "events.EntityPlayerSP_MoveEntity",
-    "events.EntityPlayerSP_SendMessage",
-    "events.EntityPlayerSP_Sprint",
-    "events.EntityRenderer_HurtShake",
-    "events.EntityRenderer_RayTraceEntity",
-    "events.EntityRenderer_Render3D",
-    "events.GuiIngameForge_Render2D",
-    "events.Minecraft_HitDelay",
-    "events.Minecraft_KeyPress",
-    "events.Minecraft_PlayerTick",
-    "events.Minecraft_WorldLoad"
+    "EntityPlayerSP_MoveEntity",
+    "EntityPlayerSP_SendMessage",
+    "EntityPlayerSP_Sprint",
+    "EntityRenderer_HurtShake",
+    "EntityRenderer_RayTraceEntity",
+    "EntityRenderer_Render3D",
+    "GuiIngame_Render2D",
+    "Minecraft_HitDelay",
+    "Minecraft_Initialize",
+    "Minecraft_KeyPress",
+    "Minecraft_PlayerTick",
+    "Minecraft_WorldLoad"
   ]
 }

@@ -1,38 +1,45 @@
-@file:Suppress("UnstableApiUsage", "PropertyName")
-
-import dev.deftu.gradle.utils.GameSide
-
 plugins {
     id("java")
-    alias(libs.plugins.dgt)
-    alias(libs.plugins.dgt.resources)
-    alias(libs.plugins.dgt.bloom)
-    alias(libs.plugins.dgt.shadow)
-    alias(libs.plugins.dgt.loom)
+    id("xyz.wagyourtail.unimined") version ("1.4.1")
 }
 
-toolkitLoomHelper {
-    // mixins
-    useMixinExtras("0.4.+")
-    useMixinRefMap(modData.id)
-    useForgeMixin(modData.id)
-    useTweaker("org.spongepowered.asm.launch.MixinTweaker")
-
-    // run configs
-    useDevAuth("1.2.+")
-    useProperty("mixin.debug.export", "true", GameSide.CLIENT)
-    disableRunConfigs(GameSide.SERVER)
-}
+group = "org.example.illusion"
+version = "0.1.0"
 
 repositories {
-    maven("https://repo.polyfrost.org/releases")
-    maven("https://repo.polyfrost.org/snapshots")
+    mavenCentral()
+    maven("https://jitpack.io/")
+}
+
+unimined.minecraft {
+    version("1.8.9")
+
+    mappings {
+        searge()
+        mcp("stable", "22-1.8.9")
+    }
+
+    ornitheFabric {
+        loader("0.18.4")
+    }
 }
 
 dependencies {
-    implementation(libs.mixin)
-    shade(libs.mixin)
+    implementation("io.github.nevalackin:radbus:1.0.0")
+    "include"("io.github.nevalackin:radbus:1.0.0")
+}
 
-    implementation(libs.radbus)
-    shade(libs.radbus)
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
+tasks {
+    jar {
+        manifest.attributes["Main-Class"] = "org.example.illusion.feature.container.Main"
+    }
 }
