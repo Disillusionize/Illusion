@@ -2,7 +2,7 @@ package org.example.illusion.mixin.event.render;
 
 import net.minecraft.client.renderer.EntityRenderer;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.event.impl.render.HurtShakeEvent;
+import org.example.illusion.event.render.HurtShakeEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

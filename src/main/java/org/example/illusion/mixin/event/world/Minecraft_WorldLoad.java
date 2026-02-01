@@ -3,7 +3,7 @@ package org.example.illusion.mixin.event.world;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.event.impl.world.WorldLoadEvent;
+import org.example.illusion.event.world.WorldLoadEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

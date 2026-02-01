@@ -2,7 +2,7 @@ package org.example.illusion.mixin.event.player;
 
 import net.minecraft.client.Minecraft;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.event.impl.player.HitDelayEvent;
+import org.example.illusion.event.player.HitDelayEvent;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;

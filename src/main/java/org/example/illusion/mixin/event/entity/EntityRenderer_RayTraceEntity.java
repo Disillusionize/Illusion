@@ -3,7 +3,7 @@ package org.example.illusion.mixin.event.entity;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.event.impl.entity.RayTraceEntityEvent;
+import org.example.illusion.event.entity.RayTraceEntityEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;

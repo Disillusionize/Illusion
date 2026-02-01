@@ -2,11 +2,11 @@ package org.example.illusion;
 
 import io.github.nevalackin.radbus.PubSub;
 import net.minecraft.client.gui.GuiScreen;
-import org.example.illusion.feature.config.ConfigManager;
-import org.example.illusion.event.api.Event;
-import org.example.illusion.feature.Initializer;
-import org.example.illusion.feature.screen.impl.ClickGui;
-import org.example.illusion.feature.module.api.ModuleManager;
+import org.example.illusion.config.ConfigManager;
+import org.example.illusion.api.event.Event;
+import org.example.illusion.internal.Initializer;
+import org.example.illusion.screen.ClickGui;
+import org.example.illusion.api.module.ModuleManager;
 
 public final class IllusionClient implements Initializer {
     public static final String ID = "illusion";

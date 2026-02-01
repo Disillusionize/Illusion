@@ -4,7 +4,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.event.impl.player.MoveEntityEvent;
+import org.example.illusion.event.player.MoveEntityEvent;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(EntityPlayerSP.class)

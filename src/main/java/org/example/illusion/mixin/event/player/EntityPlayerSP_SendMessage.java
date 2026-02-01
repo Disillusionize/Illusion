@@ -2,7 +2,7 @@ package org.example.illusion.mixin.event.player;
 
 import net.minecraft.client.entity.EntityPlayerSP;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.event.impl.player.SendMessageEvent;
+import org.example.illusion.event.player.SendMessageEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
