@@ -17,8 +17,11 @@ public class CheckSetting extends Setting {
     }
 
     public void setEnabled(boolean enabled) {
-        this.getParent().onUpdate();
         this.enabled = enabled;
+        this.getParent().onUpdate();
+        if (org.example.illusion.IllusionClient.getInstance().getConfigManager() != null) {
+            org.example.illusion.IllusionClient.getInstance().getConfigManager().saveConfig();
+        }
     }
 }
 

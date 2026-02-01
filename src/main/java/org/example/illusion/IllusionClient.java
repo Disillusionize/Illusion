@@ -1,6 +1,7 @@
 package org.example.illusion;
 
 import io.github.nevalackin.radbus.PubSub;
+import org.example.illusion.feature.config.ConfigManager;
 import org.example.illusion.event.api.Event;
 import org.example.illusion.feature.Initializer;
 import org.example.illusion.feature.screen.impl.ClickGui;
@@ -16,6 +17,7 @@ public final class IllusionClient implements Initializer {
     private PubSub<Event> eventBus;
     private ModuleManager moduleManager;
     private ClickGui clickGui;
+    private ConfigManager configManager;
 
     public void initialize() {
         INSTANCE = this;
@@ -23,6 +25,11 @@ public final class IllusionClient implements Initializer {
         eventBus = PubSub.newInstance(System.err::println);
         moduleManager = new ModuleManager();
         clickGui = new ClickGui();
+        configManager = new ConfigManager();
+
+        configManager.loadConfig();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> configManager.saveConfig()));
     }
 
     public static IllusionClient getInstance() {
@@ -39,5 +46,9 @@ public final class IllusionClient implements Initializer {
 
     public ClickGui getClickGui() {
         return clickGui;
+    }
+
+    public ConfigManager getConfigManager() {
+        return configManager;
     }
 }

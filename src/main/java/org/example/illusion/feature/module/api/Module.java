@@ -46,6 +46,9 @@ public class Module extends Toggleable implements Feature {
         } else {
             IllusionClient.getInstance().getEventBus().publish(new ModuleDisabledEvent(this));
         }
+        if (IllusionClient.getInstance().getConfigManager() != null) {
+            IllusionClient.getInstance().getConfigManager().saveConfig();
+        }
     }
 
     public final Category getCategory() {
@@ -58,6 +61,9 @@ public class Module extends Toggleable implements Feature {
 
     public final void setBind(int bind) {
         this.bind = bind;
+        if (IllusionClient.getInstance().getConfigManager() != null) {
+            IllusionClient.getInstance().getConfigManager().saveConfig();
+        }
     }
 
     public final ArrayList<Setting> getSettings() {

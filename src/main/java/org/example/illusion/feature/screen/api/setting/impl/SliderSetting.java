@@ -33,7 +33,10 @@ public class SliderSetting extends Setting {
     }
 
     public void setValue(float value) {
-        this.getParent().onUpdate();
         this.value = value;
+        this.getParent().onUpdate();
+        if (org.example.illusion.IllusionClient.getInstance().getConfigManager() != null) {
+            org.example.illusion.IllusionClient.getInstance().getConfigManager().saveConfig();
+        }
     }
 }

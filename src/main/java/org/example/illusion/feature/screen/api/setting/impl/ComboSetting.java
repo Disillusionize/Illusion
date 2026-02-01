@@ -47,6 +47,9 @@ public class ComboSetting extends Setting {
                 this.value = options[i];
                 this.index = i;
                 this.getParent().onUpdate();
+                if (org.example.illusion.IllusionClient.getInstance().getConfigManager() != null) {
+                    org.example.illusion.IllusionClient.getInstance().getConfigManager().saveConfig();
+                }
                 return;
             }
         }
