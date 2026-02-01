@@ -4,11 +4,8 @@ import io.github.nevalackin.radbus.Listen;
 import org.example.illusion.IllusionClient;
 import org.example.illusion.event.impl.input.KeyPressEvent;
 import org.example.illusion.feature.api.Manager;
-import org.example.illusion.feature.module.impl.combat.*;
-import org.example.illusion.feature.module.impl.misc.*;
-import org.example.illusion.feature.module.impl.movement.*;
-import org.example.illusion.feature.module.impl.player.*;
-import org.example.illusion.feature.module.impl.visuals.*;
+import org.example.illusion.feature.module.impl.misc.ClickGuiModule;
+import org.example.illusion.feature.module.impl.misc.TestModule;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,11 +13,8 @@ import java.util.stream.Collectors;
 public class ModuleManager extends Manager<Module> {
     public ModuleManager() {
         super(
-                new AutoClicker(), new Hitboxes(), new NoHitDelay(), new Reach(),
-                new ClickGuiModule(), new TestModule(), new Weapons(),
-                new NoJumpDelay(), new Sprint(),
-                new InventoryMove(),
-                new ModOverlay(), new NoHurtCam(), new PlayerESP()
+                new ClickGuiModule(),
+                new TestModule()
         );
 
         IllusionClient.getInstance().getEventBus().subscribe(this);
@@ -37,7 +31,7 @@ public class ModuleManager extends Manager<Module> {
         if (event.getKey() == 0 || !event.isDown()) return;
 
         this.getElements().forEach(module -> {
-                    if (module.getBind() == event.getKey()) module.toggle();
-                });
+            if (module.getBind() == event.getKey()) module.toggle();
+        });
     }
 }

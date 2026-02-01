@@ -2,9 +2,11 @@ package org.example.illusion.feature.screen.impl;
 
 import net.minecraft.client.gui.GuiScreen;
 import org.example.illusion.IllusionClient;
+import org.example.illusion.feature.module.impl.misc.ClickGuiModule;
 import org.example.illusion.feature.screen.api.component.api.Component;
 import org.example.illusion.feature.screen.api.component.api.Frame;
 import org.example.illusion.feature.module.api.Category;
+import org.example.illusion.util.Wrapper;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,7 +15,10 @@ public class ClickGui extends GuiScreen {
 
     public static ArrayList<Frame> frames;
 
-    public ClickGui() {
+    private final GuiScreen parent;
+
+    public ClickGui(GuiScreen parent) {
+        this.parent = parent;
         frames = new ArrayList<>();
         int frameX = 5;
         for (Category category : Category.values()) {
@@ -94,13 +99,24 @@ public class ClickGui extends GuiScreen {
         }
     }
 
+    public ArrayList<Frame> getFrames() {
+        return frames;
+    }
+
+    public GuiScreen getParent() {
+        return parent;
+    }
+
     @Override
     public void onGuiClosed() {
-        IllusionClient.getInstance().getModuleManager().getElement("ClickGui").setEnabled(false);
+        ClickGuiModule module = (ClickGuiModule) IllusionClient.getInstance().getModuleManager().getElement("ClickGui");
+        if (module != null && module.isEnabled()) {
+            module.setEnabled(false);
+        }
     }
 
     @Override
     public boolean doesGuiPauseGame() {
-        return true;
+        return false;
     }
 }

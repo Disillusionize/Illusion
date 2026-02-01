@@ -1,4 +1,4 @@
-package org.example.illusion.mixin;
+package org.example.illusion.mixin.event.player;
 
 import net.minecraft.entity.EntityLivingBase;
 import org.example.illusion.IllusionClient;
@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(EntityLivingBase.class)
 public class EntityLivingBase_JumpDelay {
+
     @ModifyConstant(
             method = "onLivingUpdate",
             constant = @Constant(intValue = 10)
@@ -18,4 +19,5 @@ public class EntityLivingBase_JumpDelay {
         IllusionClient.getInstance().getEventBus().publish(event);
         return event.getJumpTicks();
     }
+
 }

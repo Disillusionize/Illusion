@@ -87,7 +87,9 @@ public class ConfigManager {
 
                     if (module != null) {
                         if (moduleObject.has("enabled")) {
-                            module.setEnabled(moduleObject.get("enabled").getAsBoolean());
+                            if (!module.getName().equalsIgnoreCase("clickgui")) {
+                                module.setEnabled(moduleObject.get("enabled").getAsBoolean());
+                            }
                         }
                         if (moduleObject.has("bind")) {
                             module.setBind(moduleObject.get("bind").getAsInt());

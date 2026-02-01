@@ -1,22 +1,22 @@
 {
-  "compatibilityLevel": "JAVA_8",
-  "minVersion": "0.8",
-  "package": "org.example.illusion.mixin",
-  "mixins": [
-    "EntityLivingBase_JumpDelay"
-  ],
-  "client": [
-    "EntityPlayerSP_MoveEntity",
-    "EntityPlayerSP_SendMessage",
-    "EntityPlayerSP_Sprint",
-    "EntityRenderer_HurtShake",
-    "EntityRenderer_RayTraceEntity",
-    "EntityRenderer_Render3D",
-    "GuiIngame_Render2D",
-    "Minecraft_HitDelay",
-    "Minecraft_Initialize",
-    "Minecraft_KeyPress",
-    "Minecraft_PlayerTick",
-    "Minecraft_WorldLoad"
-  ]
+    "compatibilityLevel": "JAVA_8",
+    "minVersion": "0.8",
+    "package": "org.example.illusion.mixin",
+    "mixins": [
+        "event.player.EntityLivingBase_JumpDelay"
+    ],
+    "client": [
+        "event.player.EntityPlayerSP_MoveEntity",
+        "event.player.EntityPlayerSP_SendMessage",
+        "event.player.EntityPlayerSP_Sprint",
+        "event.render.EntityRenderer_HurtShake",
+        "event.entity.EntityRenderer_RayTraceEntity",
+        "event.render.EntityRenderer_Render3D",
+        "event.render.GuiIngame_Render2D",
+        "event.player.Minecraft_HitDelay",
+        "event.input.Minecraft_KeyPress",
+        "event.player.Minecraft_PlayerTick",
+        "event.world.Minecraft_WorldLoad",
+        "internal.Minecraft_Initialize"
+    ]
 }

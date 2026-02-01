@@ -5,6 +5,7 @@ import org.example.illusion.feature.screen.api.component.api.Component;
 import org.example.illusion.feature.screen.api.component.impl.ButtonComponent;
 import org.example.illusion.feature.screen.api.setting.impl.CheckSetting;
 import org.example.illusion.feature.screen.impl.Theme;
+import org.example.illusion.util.FontUtils;
 import org.example.illusion.util.Wrapper;
 import org.lwjgl.opengl.GL11;
 
@@ -49,11 +50,11 @@ public class CheckComponent extends Component {
         GL11.glPushMatrix();
         GL11.glScalef(0.5f,0.5f, 0.5f);
 
-        Wrapper.getFontRenderer().drawStringWithShadow(
+        FontUtils.drawString(
                 this.setting.getName(),
                 (parent.parent.getX() + 10 + 4) * 2 + 5,
                 (parent.parent.getY() + offset + 2) * 2 + 4,
-                -1
+                hovered ? Theme.getMainColor().getRGB() : -1
         );
 
         GL11.glPopMatrix();
@@ -63,7 +64,7 @@ public class CheckComponent extends Component {
                 parent.parent.getY() + offset + 3,
                 parent.parent.getX() + 9 + 4,
                 parent.parent.getY() + offset + 9,
-                Theme.getMainColor().getRGB()
+                -1
         );
 
         if (this.setting.isEnabled()) {

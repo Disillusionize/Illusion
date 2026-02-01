@@ -1,4 +1,4 @@
-package org.example.illusion.mixin;
+package org.example.illusion.mixin.event.entity;
 
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;

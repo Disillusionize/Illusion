@@ -1,4 +1,4 @@
-package org.example.illusion.mixin;
+package org.example.illusion.mixin.internal;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;

@@ -93,7 +93,8 @@ public class ButtonComponent extends Component {
             FontUtils.drawString(
                     this.open ? "-" : "+",
                     (parent.getX() + parent.getWidth() - 10) * 2,
-                    (parent.getY() + offset + 2) * 2 + 4
+                    (parent.getY() + offset + 2) * 2 + 4,
+                    isHovered ? Theme.getMainColor().getRGB() : -1
             );
         }
 

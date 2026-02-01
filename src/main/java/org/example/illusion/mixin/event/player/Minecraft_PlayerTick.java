@@ -1,4 +1,4 @@
-package org.example.illusion.mixin;
+package org.example.illusion.mixin.event.player;
 
 import net.minecraft.client.Minecraft;
 import org.example.illusion.IllusionClient;

@@ -1,6 +1,7 @@
 package org.example.illusion;
 
 import io.github.nevalackin.radbus.PubSub;
+import net.minecraft.client.gui.GuiScreen;
 import org.example.illusion.feature.config.ConfigManager;
 import org.example.illusion.event.api.Event;
 import org.example.illusion.feature.Initializer;
@@ -16,7 +17,6 @@ public final class IllusionClient implements Initializer {
 
     private PubSub<Event> eventBus;
     private ModuleManager moduleManager;
-    private ClickGui clickGui;
     private ConfigManager configManager;
 
     public void initialize() {
@@ -24,7 +24,6 @@ public final class IllusionClient implements Initializer {
 
         eventBus = PubSub.newInstance(System.err::println);
         moduleManager = new ModuleManager();
-        clickGui = new ClickGui();
         configManager = new ConfigManager();
 
         configManager.loadConfig();
@@ -44,8 +43,8 @@ public final class IllusionClient implements Initializer {
         return moduleManager;
     }
 
-    public ClickGui getClickGui() {
-        return clickGui;
+    public ClickGui getClickGui(GuiScreen screen) {
+        return new ClickGui(screen);
     }
 
     public ConfigManager getConfigManager() {

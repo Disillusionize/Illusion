@@ -43,8 +43,6 @@ public class SliderComponent extends Component {
                 this.hovered ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()
         );
 
-        final int drag = (int)(setting.getValue() / setting.getMax() * this.parent.parent.getWidth());
-
         Gui.drawRect(
                 parent.parent.getX() + 2,
                 parent.parent.getY() + offset,
@@ -67,7 +65,8 @@ public class SliderComponent extends Component {
         FontUtils.drawString(
                 setting.getName() + ": " + setting.getValue() ,
                 (parent.parent.getX()* 2 + 15),
-                (parent.parent.getY() + offset + 2) * 2 + 5
+                (parent.parent.getY() + offset + 2) * 2 + 5,
+                hovered ? Theme.getMainColor().getRGB() : -1
         );
 
         GL11.glPopMatrix();
@@ -91,6 +90,7 @@ public class SliderComponent extends Component {
 
         renderWidth = (88) * (setting.getValue() - min) / (max - min);
 
+        // TODO: Make it so it saves the value when you release
         if (dragging) {
             if (diff == 0) {
                 setting.setValue(setting.getMin());

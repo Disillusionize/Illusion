@@ -1,4 +1,4 @@
-package org.example.illusion.mixin;
+package org.example.illusion.mixin.event.render;
 
 import net.minecraft.client.gui.GuiIngame;
 import org.example.illusion.IllusionClient;

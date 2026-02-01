@@ -61,7 +61,8 @@ public class KeybindComponent extends Component {
         FontUtils.drawString(
                 binding ? "Press a key..." : ("Key: " + Keyboard.getKeyName(module.getBind())),
                 (parent.parent.getX() + 7) * 2,
-                (parent.parent.getY() + offset + 2) * 2 + 5
+                (parent.parent.getY() + offset + 2) * 2 + 5,
+                hovered ? Theme.getMainColor().getRGB() : -1
         );
 
         GL11.glPopMatrix();
