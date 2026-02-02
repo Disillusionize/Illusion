@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set up JDK 17 (Gradle runtime)
+      - name: Setup Java
         uses: actions/setup-java@v5
         with:
           java-version: 17
@@ -40,8 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Make Gradle Executable
-        run: chmod +x ./gradlew
-
-      - name: Test Compile (toolchain targets Java 8)
-        run: ./gradlew compileJava --no-daemon
+      - name: Compile Java
+        run: |
+          chmod +x ./gradlew
+          ./gradlew compileJava --no-daemon
