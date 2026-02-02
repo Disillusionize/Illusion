@@ -1,7 +1,9 @@
-package org.example.illusion.ui.component;
+package org.example.illusion.ui.component.impl.setting;
 
 import net.minecraft.client.gui.Gui;
 import org.example.illusion.setting.CheckSetting;
+import org.example.illusion.ui.component.impl.ModuleComponent;
+import org.example.illusion.ui.component.Widget;
 import org.example.illusion.ui.menu.Theme;
 
 public class CheckComponent extends Widget {

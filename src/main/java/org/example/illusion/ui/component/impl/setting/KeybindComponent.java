@@ -1,7 +1,9 @@
-package org.example.illusion.ui.component;
+package org.example.illusion.ui.component.impl.setting;
 
 import org.example.illusion.module.Module;
 import org.example.illusion.module.impl.ClickGuiModule;
+import org.example.illusion.ui.component.impl.ModuleComponent;
+import org.example.illusion.ui.component.Widget;
 import org.example.illusion.ui.menu.Theme;
 import org.lwjgl.input.Keyboard;
 

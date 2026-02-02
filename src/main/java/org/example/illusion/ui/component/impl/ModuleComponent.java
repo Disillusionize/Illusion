@@ -1,4 +1,4 @@
-package org.example.illusion.ui.component;
+package org.example.illusion.ui.component.impl;
 
 import net.minecraft.client.gui.Gui;
 import org.example.illusion.module.Module;
@@ -6,6 +6,12 @@ import org.example.illusion.setting.CheckSetting;
 import org.example.illusion.setting.ComboSetting;
 import org.example.illusion.setting.Setting;
 import org.example.illusion.setting.SliderSetting;
+import org.example.illusion.ui.component.Component;
+import org.example.illusion.ui.component.Frame;
+import org.example.illusion.ui.component.impl.setting.CheckComponent;
+import org.example.illusion.ui.component.impl.setting.ComboComponent;
+import org.example.illusion.ui.component.impl.setting.KeybindComponent;
+import org.example.illusion.ui.component.impl.setting.SliderComponent;
 import org.example.illusion.ui.menu.Theme;
 import org.example.illusion.util.FontUtils;
 import org.lwjgl.opengl.GL11;

@@ -4,6 +4,7 @@ import net.minecraft.client.gui.Gui;
 import org.example.illusion.IllusionClient;
 import org.example.illusion.module.Category;
 import org.example.illusion.module.Module;
+import org.example.illusion.ui.component.impl.ModuleComponent;
 import org.example.illusion.ui.menu.Theme;
 import org.example.illusion.util.FontUtils;
 import org.lwjgl.opengl.GL11;
