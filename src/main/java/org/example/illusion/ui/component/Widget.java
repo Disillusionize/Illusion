@@ -40,11 +40,10 @@ public abstract class Widget extends Component {
 
     protected void drawBackground() {
         Gui.drawRect(
-                x + 2, y,
+                x, y,
                 x + parent.parent.getWidth(), y + COMPONENT_HEIGHT,
                 hovered ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()
         );
-//        Gui.drawRect(x, y, x + 2, y + COMPONENT_HEIGHT, Theme.getBackColor().getRGB());
     }
 
     protected void drawLabel(String text, int xOffset, int color) {
