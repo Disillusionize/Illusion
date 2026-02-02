@@ -6,6 +6,7 @@ import org.example.illusion.module.Category;
 import org.example.illusion.module.impl.ClickGuiModule;
 import org.example.illusion.ui.component.Component;
 import org.example.illusion.ui.component.Frame;
+import org.example.illusion.ui.render.DefaultRenderer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawGradientRect(0, 0, this.width, this.height, new Color(0, 0, 0, 30).getRGB(), Theme.getMainColor(30).getRGB());
+        DefaultRenderer.INSTANCE.drawGradientRect(0, 0, this.width, this.height, new Color(0, 0, 0, 30).getRGB(), Theme.getMainColor(30).getRGB());
         for (Frame frame : frames) {
             frame.renderFrame();
             frame.updatePosition(mouseX, mouseY);

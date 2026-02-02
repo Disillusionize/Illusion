@@ -1,18 +1,15 @@
 package org.example.illusion.ui.component;
 
-import net.minecraft.client.gui.Gui;
 import org.example.illusion.IllusionClient;
 import org.example.illusion.module.Category;
 import org.example.illusion.module.Module;
 import org.example.illusion.ui.component.impl.ModuleComponent;
 import org.example.illusion.ui.menu.Theme;
-import org.example.illusion.util.FontUtils;
-import org.lwjgl.opengl.GL11;
+import org.example.illusion.ui.render.DefaultRenderer;
 
 import java.util.ArrayList;
 
 public class Frame {
-
     public ArrayList<Component> components;
     public Category category;
     public int dragX;
@@ -59,12 +56,9 @@ public class Frame {
     }
 
     public void renderFrame() {
-        Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, Theme.getMainColor().getRGB());
-        GL11.glPushMatrix();
-        GL11.glScalef(0.5f, 0.5f, 0.5f);
-        FontUtils.drawString(this.category.name(), (this.x + 2) * 2 + 5, (this.y + 2.5f) * 2 + 5);
-        FontUtils.drawString(this.open ? "-" : "+", (this.x + this.width - 10) * 2 + 5, (this.y + 2.5f) * 2 + 5);
-        GL11.glPopMatrix();
+        DefaultRenderer.INSTANCE.drawRect(this.x, this.y, this.width, this.barHeight, Theme.getMainColor().getRGB());
+        DefaultRenderer.INSTANCE.drawScaledString(this.category.name(), this.x + 4.5f, this.y + 5f, 0.5f, -1);
+        DefaultRenderer.INSTANCE.drawScaledString(this.open ? "-" : "+", this.x + this.width - 7.5f, this.y + 5f, 0.5f, -1);
         if (this.open) {
             if (!this.components.isEmpty()) {
                 for (Component component : components) {

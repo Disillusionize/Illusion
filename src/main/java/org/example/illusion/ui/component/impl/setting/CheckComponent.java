@@ -1,10 +1,10 @@
 package org.example.illusion.ui.component.impl.setting;
 
-import net.minecraft.client.gui.Gui;
 import org.example.illusion.setting.CheckSetting;
 import org.example.illusion.ui.component.impl.ModuleComponent;
 import org.example.illusion.ui.component.Widget;
 import org.example.illusion.ui.menu.Theme;
+import org.example.illusion.ui.render.DefaultRenderer;
 
 public class CheckComponent extends Widget {
     private final CheckSetting setting;
@@ -19,10 +19,10 @@ public class CheckComponent extends Widget {
         drawBackground();
         drawLabel(setting.getName(), 20, hovered ? Theme.getMainColor().getRGB() : -1);
 
-        Gui.drawRect(x + 7, y + 3, x + 13, y + 9, -1);
+        DefaultRenderer.INSTANCE.drawRect(x + 7, y + 3, 6, 6, -1);
 
         if (setting.isEnabled()) {
-            Gui.drawRect(x + 8, y + 4, x + 12, y + 8, Theme.getMainColor().darker().getRGB());
+            DefaultRenderer.INSTANCE.drawRect(x + 8, y + 4, 4, 4, Theme.getMainColor().darker().getRGB());
         }
     }
 

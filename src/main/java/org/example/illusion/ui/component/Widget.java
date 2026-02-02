@@ -1,10 +1,8 @@
 package org.example.illusion.ui.component;
 
-import net.minecraft.client.gui.Gui;
 import org.example.illusion.ui.component.impl.ModuleComponent;
 import org.example.illusion.ui.menu.Theme;
-import org.example.illusion.util.FontUtils;
-import org.lwjgl.opengl.GL11;
+import org.example.illusion.ui.render.DefaultRenderer;
 
 public abstract class Widget extends Component {
     protected static final int COMPONENT_HEIGHT = 12;
@@ -39,18 +37,15 @@ public abstract class Widget extends Component {
     }
 
     protected void drawBackground() {
-        Gui.drawRect(
+        DefaultRenderer.INSTANCE.drawRect(
                 x, y,
-                x + parent.parent.getWidth(), y + COMPONENT_HEIGHT,
+                parent.parent.getWidth(), COMPONENT_HEIGHT,
                 hovered ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()
         );
     }
 
     protected void drawLabel(String text, int xOffset, int color) {
-        GL11.glPushMatrix();
-        GL11.glScalef(SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
-        FontUtils.drawString(text, (x + xOffset) * 2, (y + 2) * 2 + 5, color);
-        GL11.glPopMatrix();
+        DefaultRenderer.INSTANCE.drawScaledString(text, x + xOffset, y + 4.5f, SCALE_FACTOR, color);
     }
 
 }

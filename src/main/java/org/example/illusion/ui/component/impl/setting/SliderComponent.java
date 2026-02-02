@@ -1,10 +1,10 @@
 package org.example.illusion.ui.component.impl.setting;
 
-import net.minecraft.client.gui.Gui;
 import org.example.illusion.setting.SliderSetting;
 import org.example.illusion.ui.component.impl.ModuleComponent;
 import org.example.illusion.ui.component.Widget;
 import org.example.illusion.ui.menu.Theme;
+import org.example.illusion.ui.render.DefaultRenderer;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -27,10 +27,10 @@ public class SliderComponent extends Widget {
     public void renderComponent() {
         drawBackground();
 
-        Gui.drawRect(x + 2, y, x + (int) renderWidth, y + COMPONENT_HEIGHT,
+        DefaultRenderer.INSTANCE.drawRect(x + 2, y, (int) renderWidth - 2, COMPONENT_HEIGHT,
                 hovered ? Theme.getMainColor().darker().getRGB() : Theme.getMainColor().getRGB());
 
-        drawLabel(setting.getName() + ": " + setting.getValue(), 15,
+        drawLabel(setting.getName() + ": " + setting.getValue(), 7,
                 hovered ? Theme.getMainColor().getRGB() : -1);
     }
 

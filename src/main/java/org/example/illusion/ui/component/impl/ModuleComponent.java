@@ -1,6 +1,5 @@
 package org.example.illusion.ui.component.impl;
 
-import net.minecraft.client.gui.Gui;
 import org.example.illusion.module.Module;
 import org.example.illusion.setting.CheckSetting;
 import org.example.illusion.setting.ComboSetting;
@@ -13,8 +12,7 @@ import org.example.illusion.ui.component.impl.setting.ComboComponent;
 import org.example.illusion.ui.component.impl.setting.KeybindComponent;
 import org.example.illusion.ui.component.impl.setting.SliderComponent;
 import org.example.illusion.ui.menu.Theme;
-import org.example.illusion.util.FontUtils;
-import org.lwjgl.opengl.GL11;
+import org.example.illusion.ui.render.DefaultRenderer;
 
 import java.util.ArrayList;
 
@@ -69,36 +67,33 @@ public class ModuleComponent extends Component {
 
     @Override
     public void renderComponent() {
-        Gui.drawRect(
+        DefaultRenderer.INSTANCE.drawRect(
                 parent.getX(),
                 this.parent.getY() + this.offset,
-                parent.getX() + parent.getWidth(),
-                this.parent.getY() + height + this.offset,
+                parent.getWidth(),
+                height,
                 this.isHovered ?
                         (this.mod.isEnabled() ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()) :
                         (this.mod.isEnabled() ? Theme.getBackColor().darker().darker().getRGB() : Theme.getBackColor().darker().getRGB())
         );
 
-        GL11.glPushMatrix();
-        GL11.glScalef(0.5f, 0.5f, 0.5f);
-
-        FontUtils.drawString(
+        DefaultRenderer.INSTANCE.drawScaledString(
                 this.mod.getName(),
-                (parent.getX() + 2) * 2,
-                (parent.getY() + offset + 2) * 2 + 4,
+                parent.getX() + 2,
+                parent.getY() + offset + 4,
+                0.5f,
                 this.mod.isEnabled() ? Theme.getMainColor().getRGB() : -1
         );
 
         if (!this.subcomponents.isEmpty()) {
-            FontUtils.drawString(
+            DefaultRenderer.INSTANCE.drawScaledString(
                     this.open ? "-" : "+",
-                    (parent.getX() + parent.getWidth() - 10) * 2,
-                    (parent.getY() + offset + 2) * 2 + 4,
+                    parent.getX() + parent.getWidth() - 10,
+                    parent.getY() + offset + 4,
+                    0.5f,
                     isHovered ? Theme.getMainColor().getRGB() : -1
             );
         }
-
-        GL11.glPopMatrix();
 
         if (this.open) {
             if (!this.subcomponents.isEmpty()) {
