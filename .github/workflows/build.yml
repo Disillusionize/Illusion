@@ -18,20 +18,16 @@ jobs:
     name: Test Compile
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        java-version: [8, 17]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          fetch-depth: 10
+          fetch-depth: 1
 
-      - name: Set up JDK ${{ matrix.java-version }}
+      - name: Set up JDK 17 (Gradle runtime)
         uses: actions/setup-java@v5
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 17
           distribution: temurin
 
       - name: Cache Gradle
@@ -47,5 +43,5 @@ jobs:
       - name: Make Gradle Executable
         run: chmod +x ./gradlew
 
-      - name: Test Compile
+      - name: Test Compile (toolchain targets Java 8)
         run: ./gradlew compileJava --no-daemon
