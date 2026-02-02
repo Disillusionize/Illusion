@@ -3,20 +3,20 @@
     "minVersion": "0.8",
     "package": "org.example.illusion.mixin",
     "mixins": [
-        "event.player.EntityLivingBase_JumpDelay"
+        "event.JumpDelay_MixinEntityLivingBase"
     ],
     "client": [
-        "event.player.EntityPlayerSP_MoveEntity",
-        "event.player.EntityPlayerSP_SendMessage",
-        "event.player.EntityPlayerSP_Sprint",
-        "event.render.EntityRenderer_HurtShake",
-        "event.entity.EntityRenderer_RayTraceEntity",
-        "event.render.EntityRenderer_Render3D",
-        "event.render.GuiIngame_Render2D",
-        "event.player.Minecraft_HitDelay",
-        "event.input.Minecraft_KeyPress",
-        "event.player.Minecraft_PlayerTick",
-        "event.world.Minecraft_WorldLoad",
-        "internal.Minecraft_Initialize"
+        "event.MoveEntity_MixinEntityPlayerSP",
+        "event.SendMessage_MixinEntityPlayerSP",
+        "event.Sprint_MixinEntityPlayerSP",
+        "event.HurtShake_MixinEntityRenderer",
+        "event.RayTraceEntity_MixinEntityRenderer",
+        "event.Render3D_MixinEntityRenderer",
+        "event.Render2D_MixinGuiIngame",
+        "event.HitDelay_MixinMinecraft",
+        "event.KeyPress_MixinMinecraft",
+        "event.PlayerTick_MixinMinecraft",
+        "event.WorldLoad_MixinMinecraft",
+        "core.Initialize_MixinMinecraft"
     ]
 }

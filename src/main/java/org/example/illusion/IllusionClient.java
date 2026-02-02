@@ -3,10 +3,10 @@ package org.example.illusion;
 import io.github.nevalackin.radbus.PubSub;
 import net.minecraft.client.gui.GuiScreen;
 import org.example.illusion.config.ConfigManager;
-import org.example.illusion.api.event.Event;
-import org.example.illusion.internal.Initializer;
-import org.example.illusion.screen.ClickGui;
-import org.example.illusion.api.module.ModuleManager;
+import org.example.illusion.core.Initializer;
+import org.example.illusion.event.Event;
+import org.example.illusion.module.ModuleManager;
+import org.example.illusion.ui.menu.ClickGui;
 
 public final class IllusionClient implements Initializer {
     public static final String ID = "illusion";
@@ -19,6 +19,10 @@ public final class IllusionClient implements Initializer {
     private ModuleManager moduleManager;
     private ConfigManager configManager;
 
+    public static IllusionClient getInstance() {
+        return INSTANCE;
+    }
+
     public void initialize() {
         INSTANCE = this;
 
@@ -29,10 +33,6 @@ public final class IllusionClient implements Initializer {
         configManager.loadConfig();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> configManager.saveConfig()));
-    }
-
-    public static IllusionClient getInstance() {
-        return INSTANCE;
     }
 
     public PubSub<Event> getEventBus() {

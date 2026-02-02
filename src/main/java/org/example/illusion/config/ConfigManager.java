@@ -2,17 +2,17 @@ package org.example.illusion.config;
 
 import com.google.gson.*;
 import net.fabricmc.loader.api.FabricLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.api.module.Module;
-import org.example.illusion.api.setting.api.Setting;
-import org.example.illusion.api.setting.impl.CheckSetting;
-import org.example.illusion.api.setting.impl.ComboSetting;
-import org.example.illusion.api.setting.impl.SliderSetting;
-import org.jetbrains.annotations.NotNull;
+import org.example.illusion.module.Module;
+import org.example.illusion.setting.Setting;
 
 import java.io.*;
 
 public class ConfigManager {
+
+    private static final Logger LOGGER = LogManager.getLogger(ConfigManager.class);
 
     private final File configDir;
     private final File configFile;
@@ -37,7 +37,10 @@ public class ConfigManager {
             moduleObject.addProperty("enabled", module.isEnabled());
             moduleObject.addProperty("bind", module.getBind());
 
-            JsonArray settingsArray = getJsonElements(module);
+            JsonArray settingsArray = new JsonArray();
+            for (Setting setting : module.getSettings()) {
+                settingsArray.add(setting.toJson());
+            }
             moduleObject.add("settings", settingsArray);
             modulesArray.add(moduleObject);
         }
@@ -47,26 +50,8 @@ public class ConfigManager {
         try (Writer writer = new FileWriter(configFile)) {
             gson.toJson(configObject, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to save configuration to {}", configFile.getAbsolutePath(), e);
         }
-    }
-
-    private static @NotNull JsonArray getJsonElements(Module module) {
-        JsonArray settingsArray = new JsonArray();
-        for (Setting setting : module.getSettings()) {
-            JsonObject settingObject = new JsonObject();
-            settingObject.addProperty("name", setting.getName());
-
-            if (setting instanceof CheckSetting) {
-                settingObject.addProperty("value", ((CheckSetting) setting).isEnabled());
-            } else if (setting instanceof SliderSetting) {
-                settingObject.addProperty("value", ((SliderSetting) setting).getValue());
-            } else if (setting instanceof ComboSetting) {
-                settingObject.addProperty("value", ((ComboSetting) setting).getValue());
-            }
-            settingsArray.add(settingObject);
-        }
-        return settingsArray;
     }
 
     public void loadConfig() {
@@ -77,6 +62,7 @@ public class ConfigManager {
         try (Reader reader = new FileReader(configFile)) {
             JsonParser parser = new JsonParser();
             JsonObject configObject = parser.parse(reader).getAsJsonObject();
+
             if (configObject.has("modules")) {
                 JsonArray modulesArray = configObject.getAsJsonArray("modules");
 
@@ -91,6 +77,7 @@ public class ConfigManager {
                                 module.setEnabled(moduleObject.get("enabled").getAsBoolean());
                             }
                         }
+
                         if (moduleObject.has("bind")) {
                             module.setBind(moduleObject.get("bind").getAsInt());
                         }
@@ -100,34 +87,20 @@ public class ConfigManager {
                             for (JsonElement settingElement : settingsArray) {
                                 JsonObject settingObject = settingElement.getAsJsonObject();
                                 String settingName = settingObject.get("name").getAsString();
-                                Setting setting = getSettingByName(module, settingName);
+                                Setting setting = module.getSetting(settingName);
 
                                 if (setting != null && settingObject.has("value")) {
-                                    JsonElement valueElement = settingObject.get("value");
-                                    if (setting instanceof CheckSetting) {
-                                        ((CheckSetting) setting).setEnabled(valueElement.getAsBoolean());
-                                    } else if (setting instanceof SliderSetting) {
-                                        ((SliderSetting) setting).setValue(valueElement.getAsFloat());
-                                    } else if (setting instanceof ComboSetting) {
-                                        ((ComboSetting) setting).setValue(valueElement.getAsString());
-                                    }
+                                    setting.fromJson(settingObject.get("value"));
                                 }
                             }
                         }
+                    } else {
+                        LOGGER.warn("Failed to find module {}", moduleName);
                     }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.error("Failed to load configuration from {}", configFile.getAbsolutePath(), e);
         }
-    }
-
-    private Setting getSettingByName(Module module, String name) {
-        for (Setting setting : module.getSettings()) {
-            if (setting.getName().equalsIgnoreCase(name)) {
-                return setting;
-            }
-        }
-        return null;
     }
 }
